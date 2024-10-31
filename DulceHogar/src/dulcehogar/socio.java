@@ -23,7 +23,7 @@ public class socio {
     private int valorCuota;
     private int cantidadAportada;
 
-    public szocio(int numeroSocio, String rut) {
+    public socio(int numeroSocio, String rut) {
         this.numeroSocio = numeroSocio;
         this.rut = rut;
         this.nombre = "";
