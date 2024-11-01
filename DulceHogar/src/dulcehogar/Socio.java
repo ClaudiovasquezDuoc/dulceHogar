@@ -6,9 +6,9 @@ package dulcehogar;
 
 /**
  *
- * @author claud
+ * @author jaket
  */
-public class socio {
+public class Socio {
     private int numeroSocio;
     private String rut;
     private String nombre;
@@ -23,7 +23,7 @@ public class socio {
     private int valorCuota;
     private int cantidadAportada;
 
-    public socio(int numeroSocio, String rut) {
+    public Socio(int numeroSocio, String rut) {
         this.numeroSocio = numeroSocio;
         this.rut = rut;
         this.nombre = "";
@@ -135,4 +135,17 @@ public class socio {
     public int getCantidadAportada() {
         return cantidadAportada;
     }
+
+    @Override
+    public String toString() {
+        return "Socio{" + "numeroSocio=" + numeroSocio + ", rut=" + rut + 
+                ", nombre=" + nombre + ", apellidoPaterno=" + apellidoPaterno + 
+                ", apellidoMaterno=" + apellidoMaterno + ", correo=" + correo + 
+                ", domicilio=" + domicilio + ", region=" + region + ", ciudad=" 
+                + ciudad + ", comuna=" + comuna + ", telefono=" + telefono + 
+                ", valorCuota=" + valorCuota + ", cantidadAportada=" + 
+                cantidadAportada + '}';
+    }
+    
+    
 }
