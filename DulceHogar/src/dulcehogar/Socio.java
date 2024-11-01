@@ -9,8 +9,8 @@ package dulcehogar;
  * @author jaket
  */
 public class Socio {
-    private int numeroSocio;
-    private String rut;
+    private final int numeroSocio;
+    private final String rut;
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
