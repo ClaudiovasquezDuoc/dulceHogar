@@ -74,11 +74,28 @@ public class DulceHogar {
                             break;
                         }
                     case 4:
-                        break;
+                        if (nuevoSocio != null) {
+                            System.out.println("Su pago de cuota fue: $"+ 
+                                    nuevoSocio.getValorCuota() + " de pesos!");
+                            break;
+                        } else {
+                            System.out.println("No se ha creado un socio "
+                                    + "todavia!");
+                            break;
+                        }
                     case 5:
-                        break;
+                        if (nuevoSocio != null) {
+                            System.out.println("Su pago total de cuotas es: $"+ 
+                                    nuevoSocio.getCantidadAportada() + 
+                                    " de pesos!");
+                            break;
+                        } else {
+                            System.out.println("No se ha creado un socio "
+                                    + "todavia!");
+                            break;
+                        }
                     case 6:
-                        System.out.println("Gracias");
+                        System.out.println( "Gracias por usar DulceHogar!");
                         break;
                     default:
                         System.out.println("Porfavor selecciona una opcion del "
@@ -148,7 +165,8 @@ public class DulceHogar {
             // Revisar si los puntos, guion, y dv estan en las posiciones correctas.
             } else if ((i == 2 || i == 6) && !indice.equals(".") &&
                     (i == 10 && !indice.equals("-")) &&
-                    i == 11 && !Arrays.asList(numeros).contains(indice) && !indice.equalsIgnoreCase("K")) {
+                    i == 11 && !Arrays.asList(numeros).contains(indice) && 
+                    !indice.equalsIgnoreCase("K")) {
                 System.out.println("RUT Invalido!");
                 
                 return false;
@@ -162,6 +180,7 @@ public class DulceHogar {
         while (true) {
             String nombre = JOptionPane.showInputDialog("Ingrese el nombre");
             
+            // Validar formato correcto de nombre.
             if (!validarIngresoNombre(nombre)) {
                 continue;
             }
@@ -175,6 +194,7 @@ public class DulceHogar {
             String apellidoPat = JOptionPane.showInputDialog("Ingrese el "
                     + "apellido paterno");
             
+            // Validar el formato correcto de nombre.
             if (!validarIngresoNombre(apellidoPat)) {
                 continue;
             } 
@@ -188,6 +208,7 @@ public class DulceHogar {
             String apellidoMat = JOptionPane.showInputDialog("Ingrese el "
                     + "apellido materno");
             
+            // Validar el formato correcto de nombre.
             if (!validarIngresoNombre(apellidoMat)) {
                 continue;
             } 
@@ -197,11 +218,13 @@ public class DulceHogar {
     }
     
     private static boolean validarIngresoNombre(String nombre) {
+        // Verificar que el ingreso es solo de valores alfabeticos.
         if (!nombre.matches("^[A-Za-zÀ-ÖØ-öø-ÿ]+([ '-][A-Za-zÀ-ÖØ-öø-ÿ]+)*$")) {
             System.out.println("Solo se permiten letras alfabeticas!");
             return false;
         }
         
+        // Revisar si el nombre ingresado parte con mayuscula.
         if (!Character.isUpperCase(nombre.charAt(0))) {
             System.out.println("Los nombres tienen que partir con mayuscula!");
             return false;
@@ -216,6 +239,7 @@ public class DulceHogar {
                 int monto = Integer.parseInt( JOptionPane.showInputDialog(
                         "Ingrese el monto de la cuota a cancelar"));
                 
+                // Revisar si el monto ingresado es mayor a 0.
                 if (monto <= 0) {
                     System.out.println("El monto debe ser un numero mayor a "
                             + "0!");
