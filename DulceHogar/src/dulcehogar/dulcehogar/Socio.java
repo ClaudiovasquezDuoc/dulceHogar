@@ -135,6 +135,22 @@ public class Socio {
     public int getCantidadAportada() {
         return cantidadAportada;
     }
+    public  String showSocio() {
+        return "Número de Socio: " + numeroSocio + "\n" +
+               "RUT: " + rut + "\n" +
+               "Nombre: " + nombre + "\n" +
+               "Apellido Paterno: " + apellidoPaterno + "\n" +
+               "Apellido Materno: " + apellidoMaterno + "\n" +
+               "Correo: " + correo + "\n" +
+               "Domicilio: " + domicilio + "\n" +
+               "Región: " + region + "\n" +
+               "Ciudad: " + ciudad + "\n" +
+               "Comuna: " + comuna + "\n" +
+               "Teléfono: " + telefono + "\n" +
+               "Valor Cuota: " + valorCuota + "\n" +
+               "Cantidad Aportada: " + cantidadAportada;
+    }
+
 
     @Override
     public String toString() {
@@ -146,6 +162,7 @@ public class Socio {
                 ", valorCuota=" + valorCuota + ", cantidadAportada=" + 
                 cantidadAportada + '}';
     }
+
     
     
 }

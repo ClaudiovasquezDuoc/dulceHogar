@@ -4,6 +4,7 @@
  */
 package dulcehogar;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
@@ -13,12 +14,15 @@ import javax.swing.JOptionPane;
  * @author claud
  */
 public class DulceHogar {
+    private static ArrayList<Socio> socios = new ArrayList<>();
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+       
+
         
         int numSocio;
         String rutSocio;
@@ -26,7 +30,7 @@ public class DulceHogar {
         
         int menu = 0;
         
-        Socio nuevoSocio = null;
+       
         
             do{
             try {
@@ -42,6 +46,8 @@ public class DulceHogar {
         
                 switch(menu){
                     case 1:
+                        Socio nuevoSocio = null;
+
                         numSocio = DulceHogar.validarNumero();
                         rutSocio = DulceHogar.validarRut();
                         
@@ -51,49 +57,101 @@ public class DulceHogar {
                         nuevoSocio.setApellidoPaterno(DulceHogar.validarApellidoPat());
                         nuevoSocio.setApellidoMaterno(DulceHogar.validarApellidoMat());
                         
+                        socios.add(nuevoSocio);
+                        
+                        System.out.println("Socio registrado con exito!");
                         System.out.println(nuevoSocio.toString());
                         
                         break;
                     case 2:
-                    case 3:
-                        if (nuevoSocio != null) {
+                        while (true) {
+                            
+                        
+                            try {
+                                String RUT = validarRut();
+                                
+                                if(RUT.equals("")){
+                                    break;
+                                }
+
+                                Socio socio = getSocio(RUT); 
+                    
+                                if (socio == null) {
+                                    JOptionPane.showMessageDialog(null, "¡Socio no encontrado! Por favor, intente de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+                                    System.out.println("¡Socio no encontrado!");
+                                } else {
+                                    JOptionPane.showMessageDialog(null,
+                                    socio.showSocio()
+                                    , "Datos del Socio", JOptionPane.INFORMATION_MESSAGE);
+                                    break;  
+                                }
+                    
+                            } catch (NumberFormatException e) {
+                                JOptionPane.showMessageDialog(null, "Por favor, ingrese un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                                System.out.println("Entrada no válida, debe ser un número.");
+                            }
+                        }
+
+                        break;
+
+                    case 3:{
+                        String RUT = validarRut();
+                                
+                        if(RUT.equals("")){
+                            break;
+                        } 
+                        Socio socio = getSocio(RUT);
+                        if (socio == null) {
+                            JOptionPane.showMessageDialog(null, "¡Socio no encontrado! Por favor, intente de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+                            System.out.println("¡Socio no encontrado!");
+                        } else {
                         
                         montoCuota = DulceHogar.validarMonto();
                         
-                        nuevoSocio.cancelarCuota(montoCuota);
+                        socio.cancelarCuota(montoCuota);
                         
                         System.out.println("Monto cancelado por $"+ montoCuota);
                         
-                        System.out.println(nuevoSocio.toString());
+                        System.out.println(socio.toString());
                         
                         break;
                         
-                        } else {
-                            System.out.println("No se ha creado un socio "
-                                + "todavia!");
-                            break;
                         }
-                    case 4:
-                        if (nuevoSocio != null) {
+                        break;
+                    }
+                    case 4:{
+                        String RUT = validarRut();
+                                    
+                        if(RUT.equals("")){
+                            break;
+                        } 
+                        Socio socio = getSocio(RUT);
+                        if (socio == null) {
+                            JOptionPane.showMessageDialog(null, "¡Socio no encontrado! Por favor, intente de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+                            System.out.println("¡Socio no encontrado!");
+                        } else {
                             System.out.println("Su pago de cuota fue: $"+ 
-                                    nuevoSocio.getValorCuota() + " de pesos!");
+                                    socio.getValorCuota() + " de pesos!");
                             break;
-                        } else {
-                            System.out.println("No se ha creado un socio "
-                                    + "todavia!");
-                            break;
+                            }
                         }
-                    case 5:
-                        if (nuevoSocio != null) {
+                    case 5:{
+                        String RUT = validarRut();
+                                        
+                        if(RUT.equals("")){
+                            break;
+                        } 
+                        Socio socio = getSocio(RUT);
+                        if (socio == null) {
+                            JOptionPane.showMessageDialog(null, "¡Socio no encontrado! Por favor, intente de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+                            System.out.println("¡Socio no encontrado!");
+                        } else {
                             System.out.println("Su pago total de cuotas es: $"+ 
-                                    nuevoSocio.getCantidadAportada() + 
+                                    socio.getCantidadAportada() + 
                                     " de pesos!");
                             break;
-                        } else {
-                            System.out.println("No se ha creado un socio "
-                                    + "todavia!");
-                            break;
-                        }
+                        } 
+                    }
                     case 6:
                         System.out.println( "Gracias por usar DulceHogar!");
                         break;
@@ -125,15 +183,32 @@ public class DulceHogar {
             }
         }
     }
-    
+    private static Socio getSocio(String rut) {
+
+        for (Socio socio : socios) {
+            if (socio.getRut().equals(rut)) {
+                return socio;
+            }
+        }
+        
+        return null;
+    }
+
+   
     private static String validarRut() {
         while (true) {
             String rut = JOptionPane.showInputDialog("Ingrese el RUT del "
                     + "socio (con puntos y con guion)");
             
+            if (rut == null){
+                System.out.println("Operación cancelada por el usuario.");
+                return "";
+            
+            }
+        
             // Si rut no es de largo 12, es invalido.
             if (rut.length() != 12) {
-                System.out.println("RUT invalido!");
+                JOptionPane.showMessageDialog(null, "RUT invalido! Por favor, intente de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
                 
             } else {
                 if (!validarIndicesRut(rut)) continue;
@@ -238,6 +313,9 @@ public class DulceHogar {
             try {
                 int monto = Integer.parseInt( JOptionPane.showInputDialog(
                         "Ingrese el monto de la cuota a cancelar"));
+
+                System.out.println("monto");
+                System.out.println(monto);
                 
                 // Revisar si el monto ingresado es mayor a 0.
                 if (monto <= 0) {
