@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package dulcehogar;
+package dulcehogar.dulcehogar;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -68,13 +68,13 @@ public class DulceHogar {
                             
                         
                             try {
-                                String RUT = validarRut();
+                                String rut = validarRut();
                                 
-                                if(RUT.equals("")){
+                                if(rut.equals("")){
                                     break;
                                 }
 
-                                Socio socio = getSocio(RUT); 
+                                Socio socio = getSocio(rut); 
                     
                                 if (socio == null) {
                                     JOptionPane.showMessageDialog(null, "¡Socio no encontrado! Por favor, intente de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
