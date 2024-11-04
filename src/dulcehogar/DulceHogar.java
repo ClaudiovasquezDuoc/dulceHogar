@@ -82,8 +82,9 @@ public class DulceHogar {
                                 Socio socio = getSocio(RUT); 
                     
                                 if (socio == null) {
-                                    JOptionPane.showMessageDialog(null, "¡Socio no encontrado! Por favor, intente de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
                                     System.out.println("¡Socio no encontrado!");
+                                    JOptionPane.showMessageDialog(null, "¡Socio no encontrado! Por favor, intente de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+                                    
                                 } else {
                                     JOptionPane.showMessageDialog(null,
                                     socio.showSocio()
@@ -92,8 +93,9 @@ public class DulceHogar {
                                 }
                     
                             } catch (NumberFormatException e) {
-                                JOptionPane.showMessageDialog(null, "Por favor, ingrese un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
                                 System.out.println("Entrada no válida, debe ser un número.");
+                                JOptionPane.showMessageDialog(null, "Por favor, ingrese un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                                
                             }
                         }
 
@@ -107,15 +109,17 @@ public class DulceHogar {
                         } 
                         Socio socio = getSocio(RUT);
                         if (socio == null) {
-                            JOptionPane.showMessageDialog(null, "¡Socio no encontrado! Por favor, intente de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
                             System.out.println("¡Socio no encontrado!");
+                            JOptionPane.showMessageDialog(null, "¡Socio no encontrado! Por favor, intente de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+                            
                         } else {
                         
                         montoCuota = DulceHogar.validarMonto();
                         
                         socio.cancelarCuota(montoCuota);
-                        
                         System.out.println("Monto cancelado por $"+ montoCuota);
+                        JOptionPane.showMessageDialog(null, "Su pago total de cuotas es:"+ montoCuota +" de pesos");
+                        
                         
                         System.out.println(socio.toString());
                         
@@ -132,11 +136,14 @@ public class DulceHogar {
                         } 
                         Socio socio = getSocio(RUT);
                         if (socio == null) {
-                            JOptionPane.showMessageDialog(null, "¡Socio no encontrado! Por favor, intente de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
                             System.out.println("¡Socio no encontrado!");
+                            JOptionPane.showMessageDialog(null, "¡Socio no encontrado! Por favor, intente de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+                            
                         } else {
                             System.out.println("Su pago de cuota fue: $"+ 
                                     socio.getValorCuota() + " de pesos!");
+                            JOptionPane.showMessageDialog(null, "Su pago total de cuotas es:"+ socio.getValorCuota()+" de pesos");
+                            
                             break;
                             }
                         }
@@ -151,6 +158,8 @@ public class DulceHogar {
                             JOptionPane.showMessageDialog(null, "¡Socio no encontrado! Por favor, intente de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
                             System.out.println("¡Socio no encontrado!");
                         } else {
+                            JOptionPane.showMessageDialog(null, "Su pago total de cuotas es:"+ socio.getCantidadAportada()+" de pesos");
+                            //JOptionPane.showMessageDialog(parentComponent:null, message:"Su pago total de cuotas es: "+ socio.getCantidadAportada()+ " de pesos!", messageType);
                             System.out.println("Su pago total de cuotas es: $"+ 
                                     socio.getCantidadAportada() + 
                                     " de pesos!");
@@ -158,9 +167,11 @@ public class DulceHogar {
                         } 
                     }
                     case 6:
+                        JOptionPane.showMessageDialog(null, "Gracias por usar DulceHogar!");
                         System.out.println( "Gracias por usar DulceHogar!");
                         break;
                     default:
+                        JOptionPane.showMessageDialog(null, "Por favor selecciona una opcion del menu");
                         System.out.println("Porfavor selecciona una opcion del "
                                 + "menu.");
                 }
@@ -178,13 +189,17 @@ public class DulceHogar {
 
                     // Comprobar que el largo del numero de socio es 9.
                     if (String.valueOf(numero).length() != 9) {
+                        JOptionPane.showMessageDialog(null, "El numero de socio debe ser un numero "
+                                + "de nueve digitos!");
                         System.out.println("El numero de socio debe ser un numero "
-                                + "de nueve caracteres!");
+                                + "de nueve digitos!");
                     } else {return numero;}
 
                 } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "El numero de socio debe ser un numero "
+                                + "de nueve digitos!");
                     System.out.println("El numero de socio debe ser un numero de "
-                            + "nueve caracteres!");
+                            + "nueve digitos!");
                 }
             }
         }
@@ -206,7 +221,7 @@ public class DulceHogar {
                         + "socio (con puntos y con guion)");
 
                 if (rut == null){
-                    System.out.println("Operación cancelada por el usuario.");
+                    System.out.println("Operacion cancelada por el usuario.");
                     return "";
 
                 }
@@ -258,22 +273,23 @@ public class DulceHogar {
 
         private static String validarNombre() {
             while (true) {
+                System.out.println("Ingrese el nombre");
                 String nombre = JOptionPane.showInputDialog("Ingrese el nombre");
-
+                
                 // Validar formato correcto de nombre.
                 if (!validarIngresoNombre(nombre)) {
                     continue;
                 }
-
                 return nombre;
             }
         }
 
         private static String validarApellidoPat() {
             while (true) {
+                System.out.println("Ingrese el apellido paterno");
                 String apellidoPat = JOptionPane.showInputDialog("Ingrese el "
                         + "apellido paterno");
-
+                
                 // Validar el formato correcto de nombre.
                 if (!validarIngresoNombre(apellidoPat)) {
                     continue;
@@ -285,9 +301,10 @@ public class DulceHogar {
 
         private static String validarApellidoMat() {
             while (true) {
+                System.out.println("Ingrese el apellido materno");
                 String apellidoMat = JOptionPane.showInputDialog("Ingrese el "
                         + "apellido materno");
-
+                
                 // Validar el formato correcto de nombre.
                 if (!validarIngresoNombre(apellidoMat)) {
                     continue;
@@ -316,11 +333,9 @@ public class DulceHogar {
         private static int validarMonto() {
             while (true) {
                 try {
+                    System.out.println("Ingrese el monto de la cuota a cancelar");
                     int monto = Integer.parseInt( JOptionPane.showInputDialog(
                             "Ingrese el monto de la cuota a cancelar"));
-
-                    System.out.println("monto");
-                    System.out.println(monto);
 
                     // Revisar si el monto ingresado es mayor a 0.
                     if (monto <= 0) {
@@ -337,8 +352,9 @@ public class DulceHogar {
         }
         private static String validarCorreo() {
             while (true) {
+                System.out.println("Ingrese el correo");
                 String correo = JOptionPane.showInputDialog("Ingrese el correo");
-
+                
                 // Validar formato correcto de nombre.
                 if (!validarIngresoCorreo(correo)) {
                     continue;
@@ -350,13 +366,15 @@ public class DulceHogar {
             public static String validarDomicilio() {
                 String domicilio;
                 do {
-                    domicilio = JOptionPane.showInputDialog("Ingrese su dirección (ej. 123 Calle Principal):");
+                    System.out.println("Ingrese su direccion (ej. 123 Calle Principal):");
+                    domicilio = JOptionPane.showInputDialog("Ingrese su direccion (ej. 123 Calle Principal):");
                     if (domicilio == null) {
                         // Si el usuario cancela, se sale del ciclo
                         return null;
                     }
                     if (!validarDomicilioValida(domicilio)) {
-                        JOptionPane.showMessageDialog(null, "La dirección ingresada no es válida. Intente de nuevo.");
+                        System.out.println("La direccion ingresada no es valida. Intente de nuevo.");
+                        JOptionPane.showMessageDialog(null, "La direccion ingresada no es valida. Intente de nuevo.");
                     }
                 } while (!validarDomicilioValida(domicilio));
                 return domicilio; // Retorna la dirección válida
@@ -364,6 +382,7 @@ public class DulceHogar {
 
         private static String validarRegion() {
             while (true) {
+                System.out.println("Ingrese el nombre de la region");
                 String region = JOptionPane.showInputDialog("Ingrese el nombre de la region");
 
                 // Validar formato correcto de nombre.
@@ -377,9 +396,9 @@ public class DulceHogar {
 
         private static String validarCiudad() {
             while (true) {
-                String ciudad = JOptionPane.showInputDialog("Ingrese el nombre de la ciudad");
-
-                // Validar formato correcto de nombre.
+                System.out.println("Ingrese el nombre de la ciudad:");
+                String ciudad = JOptionPane.showInputDialog("Ingrese el nombre de la ciudad"); 
+                // Validar formato correcto de nombre de ciudad.
                 if (!validarIngresoNombre(ciudad)) {
                     continue;
                 }
@@ -390,9 +409,9 @@ public class DulceHogar {
 
         private static String validarComuna() {
             while (true) {
+                System.out.println("Ingrese el nombre de la comuna:");
                 String comuna = JOptionPane.showInputDialog("Ingrese el nombre de la comuna");
-
-                // Validar formato correcto de nombre.
+                // Validar formato correcto de nombre comuna.
                 if (!validarIngresoNombre(comuna)) {
                     continue;
                 }
@@ -404,13 +423,15 @@ public class DulceHogar {
         public static String solicitarTelefono() {
             String telefono;
             do {
-                telefono = JOptionPane.showInputDialog("Ingrese su número telefónico chileno (ej. +56 9 1234 5678):");
+                System.out.println("Ingrese su numero telefonico chileno (ej. +56 9 1234 5678)");
+                telefono = JOptionPane.showInputDialog("Ingrese su número telefónico chileno (ej. +56 9 1234 5678):"); 
                 if (telefono == null) {
                     // Si el usuario cancela, se sale del ciclo
                     return null;
                 }
                 if (!telefonoValido(telefono)) {
-                    JOptionPane.showMessageDialog(null, "El número telefónico ingresado no es válido. Intente de nuevo.");
+                    System.out.println("El numero ingresado no es valido, Intente de nuevo");
+                    JOptionPane.showMessageDialog(null, "El número telefónico ingresado no es válido. Intente de nuevo.");                    
                 }
             } while (!telefonoValido(telefono));
 
