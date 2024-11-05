@@ -1,14 +1,16 @@
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package dulcehogar.dulcehogar;
+package dulcehogar;
 
 /**
  *
  * @author jaket
  */
 public class Socio {
+
     private final int numeroSocio;
     private final String rut;
     private String nombre;
@@ -147,8 +149,8 @@ public class Socio {
                "Ciudad: " + ciudad + "\n" +
                "Comuna: " + comuna + "\n" +
                "Teléfono: " + telefono + "\n" +
-               "Valor Cuota: $" + valorCuota + "\n" +
-               "Cantidad Aportada: $" + cantidadAportada;
+               "Valor Cuota: " + valorCuota + "\n" +
+               "Cantidad Aportada: " + cantidadAportada;
     }
 
 
