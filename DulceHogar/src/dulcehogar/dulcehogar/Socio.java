@@ -19,7 +19,7 @@ public class Socio {
     private String region;
     private String ciudad;
     private String comuna;
-    private int telefono;
+    private String telefono;
     private int valorCuota;
     private int cantidadAportada;
 
@@ -34,7 +34,7 @@ public class Socio {
         this.region = "";
         this.ciudad = "";
         this.comuna = "";
-        this.telefono = 0;
+        this.telefono = "";
         this.valorCuota = 0;
         this.cantidadAportada = 0;
     }
@@ -116,11 +116,11 @@ public class Socio {
         this.comuna = comuna;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
@@ -147,8 +147,8 @@ public class Socio {
                "Ciudad: " + ciudad + "\n" +
                "Comuna: " + comuna + "\n" +
                "Teléfono: " + telefono + "\n" +
-               "Valor Cuota: " + valorCuota + "\n" +
-               "Cantidad Aportada: " + cantidadAportada;
+               "Valor Cuota: $" + valorCuota + "\n" +
+               "Cantidad Aportada: $" + cantidadAportada;
     }
 
 
